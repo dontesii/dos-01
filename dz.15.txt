@@ -1,0 +1,120 @@
+1) Ваша задача - создать проект с кодом, добавить туда файлы со след. расширениями:
+
+ * all files with exe extension
+ * all files with o extension
+ * all files with jar extension
+ * the whole libraries directory
+
+ Закоммитить код, исключая данные расширения файлов
+
+
+root@Dedal:/home/jerson/gitHun$ git init
+Переинициализирован существующий репозиторий Git в /home/jerson/gitHun/.git/
+root@Dedal:/home/jerson/gitHun$ touch 1.exe
+root@Dedal:/home/jerson/gitHun$ touch 2.o
+root@Dedal:/home/jerson/gitHun$ touch 3.jar
+root@Dedal:/home/jerson/gitHun$ touch 4.lib
+root@Dedal:/home/jerson/gitHun$ vi .gitignore
+root@Dedal:/home/jerson/gitHun$ 
+root@Dedal:/home/jerson/gitHun$ git status
+На ветке dz
+Ваша ветка обновлена в соответствии с «origin/dz».
+
+Неотслеживаемые файлы:
+  (используйте «git add <файл>…», чтобы добавить в то, что будет включено в коммит)
+        .gitignore
+        dz.15.txt
+
+ничего не добавлено в коммит, но есть неотслеживаемые файлы (используйте «git add», чтобы отслеживать их)
+root@Dedal:/home/jerson/gitHun$ git add .
+root@Dedal:/home/jerson/gitHun$ git commit -m "V1.0"
+[dz 9c59de1] V1.0
+ 2 files changed, 4 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 dz.15.txt
+
+
+
+2) Изменить регистр букв в файле
+
+Вы закоммитили File.txt, но осознали, что он должен быть file.txt
+Изменить это.
+root@Dedal:/home/jerson/gitHun$ git add .
+root@Dedal:/home/jerson/gitHun$ git commit -m "V1.0"
+[dz 9c59de1] V1.0
+ 2 files changed, 4 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 dz.15.txt
+root@Dedal:/home/jerson/gitHun$ touch file.txt
+root@Dedal:/home/jerson/gitHun$ git git add .
+git: «git» не является командой git. Смотрите «git --help».
+
+Самые похожие команды:
+        init
+root@Dedal:/home/jerson/gitHun$ git add .
+root@Dedal:/home/jerson/gitHun$ git commit -m "Fake"
+[dz 72d5d4c] Fake
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 file.txt
+ root@Dedal:/home/jerson/gitHun$ git add File.txt
+root@Dedal:/home/jerson/gitHun$ git commit --amend --no-edit
+[dz 667e2a7] Fake
+ Date: Tue Nov 17 12:50:06 2020 +0300
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 File.txt
+
+
+
+
+
+3) Найти коммит, который был утерян
+
+Вы создали коммит с важным куском работы. Затем решили пофиксать что-то в последнем коммитет и сделали amend. 
+Далее вы осознали, что закоммитили не те изменения и нужно вернуться к первой версии коммита, который вы заамендили.
+
+Однако в истории нет предыдущей версии - вы отредактировали коммит, используя git commit --amend
+Ваша цель - найти первую версию фикса в репозитории.
+
+gitHun> git log
+commit f2b8e550ef0d1ef36f0205847017141a05ac4eba (HEAD -> dz)
+Author: donesii <bond.007.911@mail.ru>
+Date:   Tue Nov 17 16:03:09 2020 +0300
+
+    Com:1.1
+
+commit 284367a0ba840678d9a6ed5c7e370f4e03cf4051
+Author: donesii <bond.007.911@mail.ru>
+Date:   Tue Nov 17 15:59:42 2020 +0300
+
+    Com:1.0
+
+commit 7fe19f6c62cdfb1731475f8e8d52f043fe497b62 (origin/dz)
+Author: dontesii <bond.007.911@mail.ru>
+Date:   Tue Nov 17 12:50:06 2020 +0300
+
+    Fake
+
+commit 9c59de1617bee98964d6ad92ddc39301cfe83132
+Author: dontesii <bond.007.911@mail.ru>
+Date:   Tue Nov 17 12:47:22 2020 +0300
+
+    V1.0
+
+текст файла File.txt
+какой то текст
+второй текст
+какой то 3тий коммит
+тестим еще раз
+5 раз комитим
+третий комит для amend
+
+
+
+
+
+
+4) Закоммитить часть работы
+
+Вы работаете на фиксом долгое время и сделали огромную работу. Вы хотите, чтобы ваша работа была закомичена двумя коммитами.
+
+Но к сожалению, у вас все изменения в одном файле и вы не можете разбить на два файла (разделить).
