@@ -1,0 +1,26 @@
+gitHun> git branch kr
+gitHun> git checkout kr
+
+gitHun> echo "тестовый файл 1задание" >> kr.txt
+gitHun> git add kr.txt .
+gitHun> git commit -m "Vr.01"
+[kr ba5c48a] Vr.01
+ 3 files changed, 21 insertions(+), 9 deletions(-)
+ create mode 100644 kr.txt
+gitHun> git add kr.txt .
+gitHun> git commit -m "Vr.02"
+[kr aab25e9] Vr.02
+ 1 file changed, 1 insertion(+)
+gitHun> git branch bagfix
+gitHun> git checkout bagfix
+Переключено на ветку «bagfix»
+gitHun> git checkout kr
+Переключено на ветку «kr»
+gitHun> git add kr.txt .
+gitHun> git commit -m "Vr.1"
+[kr 7b461ac] Vr.1
+ 1 file changed, 1 insertion(+)
+gitHun> git merge bagfix
+Уже обновлено.
+
+Создали ветку,создали файл и коммиты,перешли на другую ветку и продолжили
