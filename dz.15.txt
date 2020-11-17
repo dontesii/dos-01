@@ -75,6 +75,12 @@ root@Dedal:/home/jerson/gitHun$ git commit --amend --no-edit
 Однако в истории нет предыдущей версии - вы отредактировали коммит, используя git commit --amend
 Ваша цель - найти первую версию фикса в репозитории.
 
+commit ab0d0006711e5fa99f6937a9a83a608018cbfa75 (HEAD -> dz)
+Merge: 1062704 4ed187e
+Author: dontesii <bond.007.911@mail.ru>
+Date:   Tue Nov 17 16:45:15 2020 +0300
+
+    Com:1.3Error
 gitHun> git log
 commit f2b8e550ef0d1ef36f0205847017141a05ac4eba (HEAD -> dz)
 Author: donesii <bond.007.911@mail.ru>
@@ -108,9 +114,32 @@ Date:   Tue Nov 17 12:47:22 2020 +0300
 5 раз комитим
 третий комит для amend
 
+root@Dedal:/home/jerson/gitHun$ git commit --amend 
+[dz f81c906] Com:1.3
+ Date: Tue Nov 17 16:45:15 2020 +0300
 
 
 
+root@Dedal:/home/jerson/gitHun$ git pull
+.
+Из https://github.com/dontesii/test
+   7fe19f6..4ed187e  dz         -> origin/dz
+КОНФЛИКТ (изменение/удаление): File.txt удалено в 4ed187e06dc5c77a61159b23deb6faf5518c363b и изменено в HEAD. Версия HEAD из File.txt оставлена в дереве.
+Не удалось провести автоматическое слияние; исправьте конфликты и сделайте коммит результата.
+
+root@Dedal:/home/jerson/gitHun$ git revert 10627047362a3c76b2c01ac2525d72a220f2e288
+[dz 25aabfb]  "Com:1.2"
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+root@Dedal:/home/jerson/gitHun$ git log
+commit 25aabfb23330eaa654d93918bb82f147ec586fab (HEAD -> dz)
+Author: dontesii <bond.007.911@mail.ru>
+Date:   Tue Nov 17 16:48:45 2020 +0300
+
+     "Com:1.2"
+    
+    This reverts commit 10627047362a3c76b2c01ac2525d72a220f2e288.
+
+Готово
 
 
 4) Закоммитить часть работы
@@ -118,3 +147,8 @@ Date:   Tue Nov 17 12:47:22 2020 +0300
 Вы работаете на фиксом долгое время и сделали огромную работу. Вы хотите, чтобы ваша работа была закомичена двумя коммитами.
 
 Но к сожалению, у вас все изменения в одном файле и вы не можете разбить на два файла (разделить).
+
+git add -p
+делаем с ключом S  # split this section into two!
+и потом сохраняем 
+
