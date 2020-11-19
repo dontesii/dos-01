@@ -1,0 +1,172 @@
+Инциализировать репу, сделать 10 коммитов, слиять коммиты в 2 (2 способа)
+commit dabc155a3a647cf68fa1310172e12295fda50868 (HEAD -> master)
+Author: dontesii <bond.007.911@mail.ru>
+Date:   Thu Nov 19 15:33:37 2020 +0300
+
+    V.10
+
+commit 65f73184d4fd354d814214dbedf405434f9fb370
+Author: dontesii <bond.007.911@mail.ru>
+Date:   Thu Nov 19 15:33:23 2020 +0300
+
+    V.09
+
+commit bf53d20e070a3720f5ae21e1224a28cc559376bf
+Author: dontesii <bond.007.911@mail.ru>
+Date:   Thu Nov 19 15:33:08 2020 +0300
+
+    V.08
+
+:...skipping...
+commit dabc155a3a647cf68fa1310172e12295fda50868 (HEAD -> master)
+Author: dontesii <bond.007.911@mail.ru>
+Date:   Thu Nov 19 15:33:37 2020 +0300
+
+    V.10
+
+commit 65f73184d4fd354d814214dbedf405434f9fb370
+Author: dontesii <bond.007.911@mail.ru>
+Date:   Thu Nov 19 15:33:23 2020 +0300
+
+    V.09
+
+commit bf53d20e070a3720f5ae21e1224a28cc559376bf
+Author: dontesii <bond.007.911@mail.ru>
+Date:   Thu Nov 19 15:33:08 2020 +0300
+
+    V.08
+
+commit e8ca56beb0bc9d29fc35c6d68cdff83ae66f7a5a
+Author: dontesii <bond.007.911@mail.ru>
+Date:   Thu Nov 19 15:32:51 2020 +0300
+
+    V.07
+
+commit ea083fdcebde0642b3de86c9ec0eafae46066d63
+Author: dontesii <bond.007.911@mail.ru>
+Date:   Thu Nov 19 15:32:02 2020 +0300
+
+    V.06
+
+commit 361103ebbbae7ff33050afc4def515b1807d230e
+Author: dontesii <bond.007.911@mail.ru>
+Date:   Thu Nov 19 15:31:39 2020 +0300
+
+    V.05
+
+commit e462eca80e92f7272a23d4cbea220144cc9104d9
+Author: dontesii <bond.007.911@mail.ru>
+Date:   Thu Nov 19 15:31:24 2020 +0300
+
+    V.04
+
+commit d91423bcceb505d32741b0e84a954be9a34eec29
+Author: dontesii <bond.007.911@mail.ru>
+Date:   Thu Nov 19 15:31:08 2020 +0300
+
+    V.03
+
+commit 6ec09b50a20a862c0a3d6af33f47f79fbb6c1c4e
+Author: dontesii <bond.007.911@mail.ru>
+Date:   Thu Nov 19 15:29:57 2020 +0300
+
+    V.02
+
+commit 41d3427984d4f1190b76427b0e0c735e7d787ae1
+Author: dontesii <bond.007.911@mail.ru>
+Date:   Thu Nov 19 15:29:37 2020 +0300
+
+    V.01
+
+    сделал 10 коммитов приступаем к объеденению(2способа)
+git rebase -i HEAD~4 объеденяем последние 4 коммита, меняем pick на squash.
+  GNU nano 4.8                                                        
+squash e8ca56b V.07
+squash bf53d20 V.08
+squash 65f7318 V.09
+squash dabc155 V.10
+
+при выводе он покажет один коммит 10,9,8,7
+ и остальные по очереди
+
+
+Второй способ
+root@Dedal:/home/jerson/gitHun/dom16$ git reset --soft HEAD~4
+
+root@Dedal:/home/jerson/gitHun/dom16$ git commit --amend (выскочит редактор нано в котором мы пропишем для себя какие коммиты мы объеденили)
+[master f97b231] commit 7-3
+ Date: Thu Nov 19 15:29:57 2020 +0300
+ 1 file changed, 9 insertions(+)
+ GNU nano 4.8                                                                Изменён  
+oot@Dedal:/home/jerson/gitHun/dom16$ git log
+commit f97b231e6677f59a525d9c9172b9864758a0c7ed (HEAD -> master)
+Author: dontesii <bond.007.911@mail.ru>
+Date:   Thu Nov 19 15:29:57 2020 +0300
+
+    commit 7-3
+
+commit 41d3427984d4f1190b76427b0e0c735e7d787ae1
+Author: dontesii <bond.007.911@mail.ru>
+Date:   Thu Nov 19 15:29:37 2020 +0300
+
+    V.01
+
+
+
+
+Привести примеры отличия git fetch vs git pull.
+
+git pull — это, по сути, команда git fetch , 
+после которой сразу же следует git merge .
+ git fetch получает изменения с сервера и сохраняет их в каталог refs/remotes/ . Это никак не влияет на локальные ветки и текущие изменения. 
+ А git merge уже вливает все эти изменения в локальную копию.
+
+
+
+Посмотреть команды rebase, рассказать отличия от merge. Привести примеры на практике.
+
+merge - это комманда для слияние 
+Rebase - это комманда для перемещение 
+ пример для merge
+  файл 1.txt
+ текст
+ "тут текс"
+
+ ветка test
+ файл  2.txt
+ текст
+ "тут текст для test"
+
+делаю merge 
+git merge testing 
+
+Тут текс.
+<<<<<< HEAD
+=======
+"тут текст для test"
+>>>>>>> testing
+
+вывод:
+комманда для слияния коммитов.
+
+
+===============
+Протестим  rebase 
+ветка testing2
+файл 3.txt
+"Очень важный текст.
+а это текст для rebase . тоже очень важный"
+git rebase master
+
+вывод 
+
+тут текст.
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+"тут текст для test"
+>>>>>>> test
+=======
+а это текст для rebase . тоже очень важный
+>>>>>>> 
+~                         
