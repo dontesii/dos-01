@@ -1,0 +1,73 @@
+Написать bash скрипт, который будет выводить следующую информацию:
+1) Тип ОС
+echo "Тип ОС:  $OSTYPE" 
+2) Имя ос
+echo "Имя ОС: $HOSTNAME "
+3) Версия ядра
+echo "Верися Ядра: " 
+uname -a | awk ' {print $3} ' 
+4) Ip адрес
+echo "Ip адрес:" 
+ip r l | grep wlp1s0
+5) LA за последние 15 минут
+echo "LA за последние 15 минут"
+cat /proc/loadavg | awk ' {print $3} '
+6) Время работы системы
+echo "Время работы системы: "
+uptime | awk ' {print $2, $3, $4, $5} '
+7) Информацию об использованной RAM
+echo "Информация об использованной RAM: "
+cat /proc/meminfo | grep Mem
+8) Информацию об авторизованных пользователях
+echo "Информацию об авторизованных пользователях:"
+w -s
+
+Скрипт должен отрабатывать при подключении по ssh и выводить данную информацию в консоль.
+Для отработки скрипта мы его кладем в директорию
+
+sudo ssh ubuntu@192.168.1.102
+ubuntu@192.168.1.102's password: 
+Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-48-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+ * Kubernetes 1.19 is out! Get it in one command with:
+
+     sudo snap install microk8s --channel=1.19 --classic
+
+   https://microk8s.io/ has docs and details.
+
+216 обновлений могут быть установлены прямо сейчас.
+77 из этих обновлений, являются обновлениями безопасности.
+Чтобы просмотреть дополнительные обновления выполните: apt list --upgradable
+
+Your Hardware Enablement Stack (HWE) is supported until April 2025.
+Last login: Mon Nov 30 15:38:12 2020 from 192.168.1.105
+
+
+Тип ОС:  linux-gnu
+Имя ОС: Dedal 
+Верися Ядра: 
+5.4.0-54-generic
+Ip адрес:
+default via 192.168.1.1 dev wlp1s0 proto dhcp metric 600 
+192.168.1.0/24 dev wlp1s0 proto kernel scope link src 192.168.1.102 metric 600 
+LA за последние 15 минут
+1.36
+Время работы системы: 
+up 55 min, 3
+Информация об использованной RAM: 
+MemTotal:        2035192 kB
+MemFree:          160536 kB
+MemAvailable:     453172 kB
+Информацию об авторизованных пользователях:
+ 15:43:47 up 55 min,  3 users,  load average: 1,06, 1,44, 1,36
+USER     TTY      FROM              IDLE WHAT
+jerson   tty1     :0               55:20  /usr/bin/startplasma-x11
+jerson   pts/0    :0               55:13  kded5
+jerson   pts/2    :0                1:54  /bin/bash
+
+
+
