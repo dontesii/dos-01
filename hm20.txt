@@ -1,9 +1,56 @@
 1) Создать скрипт, который проходит по всем аргументам которым мы передаем в скрипт и выводит их ( каждый в новой строке).
+#!/bin/bash
+count=1
+for i in "$@"
+do 
+echo "argument $count = $i"
+count=$(($count+1))
+done
+
+gitHun> ./scr20.sh  1 2 3 4 5
+argument 1 = 1
+argument 3 = 2
+argument 5 = 3
+argument 7 = 4
+argument 9 = 5
+gitHun> ^C
+
+
+
+
 2) Создать скрипт, который присваивает переменной File значение TheFile - если TheFile задан. Иначе назачает переменной File /tmp/data.file.
-   Проверка в одну строку. Использовать специальные Unset/Null операции.
+   Проверка в одну строку. Использовать специальные Unset/Null операции.File=${TheFile-"/tmp/data.file"} 
+#!/bin/bash
+File="$1"
+if [ -n "$File" ]
+then 
+    echo  "File = $1"
+else 
+    File="/tmp/data.File"
+    echo " File не задан, File = "$File" "
+fi
+
+gitHun> ./scr20.sh  2
+File = 2
+gitHun> ./scr20.sh  
+ File не задан, File = /tmp/data.File 
+gitHun> 
+
+
 3) Написать скрипт, который будет выводить все имена файлов *.c в текущей директории без суффикса “.c”. 
    Для тестирования скрипта создать файлы с расширением “.c” в данной директории.
    Использовать string operation.
+echo ${var/%.c} 
+
+
+
+
+
+
+
+
+
+   
 4) Написать скрипт, который будет считать the sum and average чисел в 3 колонках
 The input:
 4  10  21
