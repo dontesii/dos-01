@@ -1,0 +1,19 @@
+  GNU nano 4.8                                  /etc/fstab                                   Изменён  
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+# / was on /dev/sda5 during installation
+UUID=05d2a9b1-bc55-4e8d-89cd-1eb622eea304 /               ext4    errors=remount-ro 0       1
+# /home was on /dev/sda6 during installation
+UUID=49b6ae45-1f22-45fe-ab23-bfe9c85a291b /home           ext4    defaults,usrquota,grpquota        0>
+# swap was on /dev/sda1 during installation
+UUID=4b64da6b-bdef-41d6-9bd1-5463d36c2d61 none            swap    sw              0       0
+/dev/md0 /mnt ext4 defaults 1 2
+
+~> sudo mount | grep quota
+/dev/sda6 on /home type ext4 (rw,relatime,quota,usrquota,grpquota)
+
