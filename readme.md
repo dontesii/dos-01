@@ -53,7 +53,79 @@ dom24>
 
 
 # 3.Подготовить шаблон для развертывания centos
-Шаблон будет докинут доп.файлом.
+
+useradd vagrant
+passwd vagrant
+Повысить привилегии пользователя в системе для использования sudo:
+
+usermod -aG wheel vagrant
+Обновить систему:
+yum update -y
+Настройка sudoers
+Отредактировать sudoers файл: 
+
+nano /etc/sudoers
+Добавить, изменить некоторые параметры к текущему виду, изменить параметр Defaults !requiretty на:
+
+Defaults   !requiretty
+ Добавить к:
+
+Defaults    env_keep += "LC_MONETARY LC_NAME LC_NUMERIC LC_PAPER LC_TELEPHONE"
+Defaults    env_keep += "LC_TIME LC_ALL LANGUAGE LINGUAS _XKB_CHARSET XAUTHORITY"
+ Параметр:
+
+Defaults    env_keep += "SSH_AUTH_SOCK"
+ Изменить параметры группы wheel:
+
+%wheel  ALL=(ALL) NOPASSWD: ALL
+Настройка sshd
+Открыть файл:
+
+/etc/ssh/sshd_config
+Изменить параметр AuthorizedKeysFile на:
+
+AuthorizedKeysFile  %h/.ssh/authorized_keys
+ Раскомментировать и выставить No у параметра UseDNS:
+
+UseDNS no
+ Перезапустить sshd:
+
+systemctl restart sshd.service
+Установка vagrant ssh ключей
+После загрузки машины, войти под учетной записью vagrant, создать каталог:
+
+mkdir .ssh && chmod 0700 .ssh/ && cd .ssh
+Загрузить vagrant ключ с офф репозитория:
+
+wget --no-check-certificate https://raw.githubusercontent.com/hashicorp/vagrant/master/keys/vagrant.pub -O authorized_keys
+Задать правильные разрешения:
+
+chmod 0600 authorized_keys
+
+Подключить образ в меню VirtualBox - Devices - Insert Guest Additions CD image... Далее необходимо создать папку монтирования, примонтировать в нее cdrom:
+
+sudo mkdir /mnt/cdrom && sudo mount /dev/cdrom /mnt/cdrom && cd /mnt/cdrom
+ Убедиться, что в данном каталоге есть файлы (можно использовать команду ls), запустить установку VirtualBox дополнений:
+
+sudo ./VBoxLinuxAdditions.run
+ После установки отмонтировать cdrom:
+
+sudo umount /mnt/cdrom
+
+jerson:~/ansible$ cd
+jerson:~$ mkdir vagrant-box && cd vagrant-box
+jerson:~/vagrant-box$ vagrant box list
+
+jerson:~/vagrant-box$ vagrant package --base Cent
+==> Cent: Exporting VM...
+==> Cent: Compressing package to: /home/jersonvagrant-box/package.box
+
+==> box: Box file was not detected as metadata. Adding it directly...
+==> box: Adding box 'centos8-custom' (v0) for provider: 
+    box: Unpacking necessary files from: file:///home/jerson/vagrant-box/package.box
+==> box: Successfully added box 'centos8-custom' (v0) for 'virtualbox'!
+jerson:~/vagrant-box$ vagrant box list
+centos8-custom (virtualbox, 0)
 # 4.Повторить пункт 2 только в докере.
 ```
 FROM ubuntu:18.04
