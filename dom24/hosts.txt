@@ -1,6 +1,11 @@
-#192.168.100.40
-#192.168.100.41
+[dev]
+centos1 ansible_ssh_host=192.168.122.239
 
-[Dev]
-centos1 ansible_host=192.168.100.40 ansible_user=root
-centos2 ansible_host=192.168.100.41 ansible_user=root
+[prod]
+centos2 ansible_ssh_host=192.168.122.186 
+
+[dev:vars]
+ansible_ssh_user=root 
+
+[prod:vars]
+ansible_ssh_user=root
