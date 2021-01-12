@@ -8,3 +8,4 @@ RUN apt-get install -y ansible
 RUN echo '[local]\nlocalhost\n' > /etc/ansible/hosts
 COPY . /etc/ansible/
 CMD ansible -m ping all
+/

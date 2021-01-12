@@ -105,3 +105,4 @@ centos2 | SUCCESS => {
     "ping": "pong"
 }
 ```
+1
