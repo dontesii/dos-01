@@ -28,7 +28,7 @@ ansible_ssh_user=root
 ansible_ssh_private_key_file=~/.ssh/id_rsa
 
 [prod:vars]
-ansible_ssh_user=rab2
+ansible_ssh_user=root
 ansible_ssh_private_key_file=~/.ssh/id_rsa
 
 Пингуем 
