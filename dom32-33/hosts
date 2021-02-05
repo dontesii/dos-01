@@ -1,0 +1,7 @@
+[prod]
+ubuntu ansible_ssh_host=192.168.122.99 
+
+
+[prod:vars]
+ansible_ssh_user=root
+ansible_ssh_private_key_file=~/.ssh/id_rsa

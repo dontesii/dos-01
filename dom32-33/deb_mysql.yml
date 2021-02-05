@@ -1,0 +1,6 @@
+- name: Inst and deploy MySQL in server
+  hosts: prod
+  become: yes
+
+  roles:
+   - deb_sql
