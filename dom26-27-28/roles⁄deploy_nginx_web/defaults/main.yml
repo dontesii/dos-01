@@ -1,0 +1,2 @@
+# defaults file for deploy_nginx_web
+server_name: "{{ ansible_fqdn }}"

@@ -1,0 +1,6 @@
+- name: Inst NGINX 
+  hosts: dev
+  become: yes
+    
+  roles:
+ - deploy_nginx_web
